@@ -1,4 +1,4 @@
-const dbMakanan = require('../models/makanan.model')
+const dbMakanan = require('../models/makanan.model').Makanan
 const helper = require('../helpers/helper')
 
 exports.getMakanan = async (req, res) => {

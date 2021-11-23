@@ -15,6 +15,7 @@ app.get('/', (req, res) => {
 
 require('./sistem_pakar/routes/makanan.route')(app)
 require('./sistem_pakar/routes/admin.route')(app)
+require('./sistem_pakar/routes/obesitas.route')(app)
 
 const PORT = process.env.PORT || 8080
 app.listen(PORT, () => {

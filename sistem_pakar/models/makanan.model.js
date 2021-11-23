@@ -28,4 +28,4 @@ const MakananSchema = mongoose.Schema({
 })
 
 const Makanan = mongoose.model("makanan", MakananSchema)
-module.exports = Makanan
+module.exports = {Makanan, MakananSchema}
