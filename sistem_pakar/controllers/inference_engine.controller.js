@@ -13,7 +13,7 @@ exports.diagnosa = async (req, res) => {
         
     let IMT, BMR, Energi, Karbo, Protein, Lemak, Aktivitas, Stress
 
-    let penyakit = ''
+    let penyakit = 'Tidak Ada'
 
     let Diagnosa
 
