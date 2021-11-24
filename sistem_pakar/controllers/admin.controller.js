@@ -10,7 +10,7 @@ exports.signUp = async (req, res) =>{
 
     try{
         
-        if((await dbAdmin.find().where({Nama_Admin})) !== 0){
+        if((await dbAdmin.find().where({Nama_Admin})).length !== 0){
             return res.status(200).send({message: 'maaf username telah terdaftar silahkan gunakan username yang baru'})
         }
 
