@@ -1,4 +1,5 @@
 const dbMakanan = require('../models/makanan.model').Makanan
+const dbObesitas = require('../models/obesitas.model')
 const helper = require('../helpers/helper')
 
 exports.getMakanan = async (req, res) => {
@@ -98,6 +99,13 @@ exports.deleteMakanan = async (req, res) => {
     const _id = req.params.id
 
     try{
+
+        const obesitas = await dbObesitas.find().where({"Makanan._id": _id})
+
+        if(obesitas.length !== 0){
+            await dbObesitas.deleteOne({"Makanan._id": _id})
+        }
+
         await dbMakanan.deleteOne({_id})
 
         return res.status(200).send({message: 'Data makanan berhasil dihapus'})
