@@ -100,10 +100,10 @@ exports.diagnosa = async (req, res) => {
         }
 
         Diagnosa = {
-            energi: Energi,
-            karbo: Karbo,
-            protein: Protein,
-            lemak: Lemak,
+            energi: Energi.toFixed(2),
+            karbo: Karbo.toFixed(2),
+            protein: Protein.toFixed(2),
+            lemak: Lemak.toFixed(2),
             penyakit: penyakit,
             makananLarangan: makanan_larangan,
             makananTerpilih: makananTerpilih
