@@ -38,13 +38,13 @@ exports.diagnosa = async (req, res) => {
             Stress = 1.4
         }
 
-        IMT = parseInt(berat_badan) / ((parseInt(tinggi_badan) / 100) * (parseInt(tinggi_badan) / 100))
+        IMT = parseFloat(berat_badan) / ((parseFloat(tinggi_badan) / 100) * (parseFloat(tinggi_badan) / 100))
 
         if(jenis_kelamin === 'Pria'){
-            BMR = 66 + (13.7 * parseInt(berat_badan)) + (5 * parseInt(tinggi_badan)) - (6.8 * parseInt(usia))
+            BMR = 66 + (13.7 * parseFloat(berat_badan)) + (5 * parseFloat(tinggi_badan)) - (6.8 * parseFloat(usia))
         }
         else if(jenis_kelamin === 'Wanita'){
-            BMR = 655 + (9.6 * parseInt(berat_badan)) + (1.8 * parseInt(tinggi_badan)) - (4.7 * parseInt(usia))
+            BMR = 655 + (9.6 * parseFloat(berat_badan)) + (1.8 * parseFloat(tinggi_badan)) - (4.7 * parseFloat(usia))
         }
 
         Energi = BMR * Aktivitas
