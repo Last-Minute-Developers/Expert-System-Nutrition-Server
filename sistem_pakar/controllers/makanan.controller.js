@@ -75,7 +75,7 @@ exports.patchMakanan = async (req, res) => {
         const makanan = await dbMakanan.find().where({Nama_Makanan: fixName})
 
         if(makanan.length > 0){
-            if(makanan[0]['Nama_Makanan'] === fixName)
+            if(makanan[0]['Nama_Makanan'] !== fixName)
                 return res.status(400).send({message: 'Maaf nama makanan sudah tersedia'})
         }
 
