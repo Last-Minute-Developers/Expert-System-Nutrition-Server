@@ -83,13 +83,23 @@ exports.patchMakanan = async (req, res) => {
 
         await dbMakanan.updateOne({_id}, {
             Nama_Makanan: fixName,
-            Nilai_Lemak: parseInt(Nilai_Lemak),
-            Nilai_Karbo: parseInt(Nilai_Karbo),
-            Nilai_Protein: parseInt(Nilai_Protein),
-            Nilai_Takaran: parseInt(Nilai_Takaran),
-            Nilai_Kalori: parseInt(Nilai_Kalori)
+            Nilai_Lemak: parseFloat(Nilai_Lemak),
+            Nilai_Karbo: parseFloat(Nilai_Karbo),
+            Nilai_Protein: parseFloat(Nilai_Protein),
+            Nilai_Takaran: parseFloat(Nilai_Takaran),
+            Nilai_Kalori: parseFloat(Nilai_Kalori)
         })
-        
+
+        const isExists = await dbObesitas.find().where({"Makanan._id": _id})
+
+        const updateMakanan = await dbMakanan.findById(_id)
+
+        if(isExists.length !== 0){
+            await dbObesitas.updateOne({_id: isExists[0]._id}, {
+                Makanan: updateMakanan
+            })
+        }
+
         return res.status(200).send({message: 'Data makanan berhasil diubah'})
 
     } catch(err) {
