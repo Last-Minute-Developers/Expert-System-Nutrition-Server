@@ -26,7 +26,7 @@ const MakananSchema = mongoose.Schema({
     required: true
   },
   Status:{
-    type: String,
+    type: Boolean,
     required: true
   }
 })

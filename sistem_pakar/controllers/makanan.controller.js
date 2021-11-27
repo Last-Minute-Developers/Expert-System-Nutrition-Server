@@ -31,7 +31,16 @@ exports.addMakanan = async (req, res) => {
         Status,
     } = req.body
 
+    let realStatus;
+
     try{
+        if(Status === "1" || Status === true){
+            realStatus = true
+        }
+        else if(Status === "0" || Status === false){
+            realStatus = false
+        }
+
         const fixName = helper.toTitleCase(Nama_Makanan)
 
         const makanan = await dbMakanan.find().where({Nama_Makanan: fixName})
@@ -72,7 +81,16 @@ exports.patchMakanan = async (req, res) => {
         Status
     } = req.body
 
+    let realStatus;
+
     try{
+        if(Status === "1" || Status === true){
+            realStatus = true
+        }
+        else if(Status === "0" || Status === false){
+            realStatus = false
+        }
+
         const fixName = helper.toTitleCase(Nama_Makanan)
 
         const makanan = await dbMakanan.find().where({Nama_Makanan: fixName})
@@ -91,7 +109,7 @@ exports.patchMakanan = async (req, res) => {
             Nilai_Protein: parseFloat(Nilai_Protein),
             Nilai_Takaran: parseFloat(Nilai_Takaran),
             Nilai_Kalori: parseFloat(Nilai_Kalori),
-            Status
+            Status: realStatus
         })
 
         const isExists = await dbObesitas.find().where({"Makanan._id": _id})

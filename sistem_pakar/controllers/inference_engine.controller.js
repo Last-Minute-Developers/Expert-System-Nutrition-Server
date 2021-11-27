@@ -9,7 +9,6 @@ exports.diagnosa = async (req, res) => {
         berat_badan,
         faktor_aktivitas,
         faktor_stress,
-        Status,
     } = req.body
         
     let IMT, BMR, Energi, Karbo, Protein, Lemak, Aktivitas, Stress
@@ -55,13 +54,13 @@ exports.diagnosa = async (req, res) => {
             Energi = BMR * Aktivitas
         }
         
-        Karbo = (((60/100) * Energi) / 4) 
-        Protein = (((15/100) * Energi) / 4) 
-        Lemak = (((25/100) * Energi) / 9) 
+        Karbo = (((60/100) * parseFloat(Energi)) / 4) 
+        Protein = (((15/100) * parseFloat(Energi)) / 4) 
+        Lemak = (((25/100) * parseFloat(Energi)) / 9) 
 
-        let fixKarbo = (((60/100) * Energi) / 4) + (( ((60/100) * Energi) / 4) * (10/100))
-        let fixProtein = (((15/100) * Energi) / 4) + (( ((15/100) * Energi) / 4) * (10/100))
-        let fixLemak = (((25/100) * Energi) / 9) + (( ((25/100) * Energi) / 9) * (10/100))
+        let fixKarbo = (((60/100) * parseFloat(Energi)) / 4) // + (( ((60/100) * Energi) / 4) * (10/100))
+        let fixProtein = (((15/100) * parseFloat(Energi)) / 4) // + (( ((15/100) * Energi) / 4) * (10/100))
+        let fixLemak = (((25/100) * parseFloat(Energi)) / 9) // + (( ((25/100) * Energi) / 9) * (10/100))
 
         let makanan_larangan = []
 
@@ -91,6 +90,7 @@ exports.diagnosa = async (req, res) => {
 
         const makananTerpilih = []
 
+        console.log('PERHITUNGAN')
         console.log(fixLemak)
         console.log(fixKarbo)
         console.log(fixProtein)
@@ -104,16 +104,13 @@ exports.diagnosa = async (req, res) => {
                 ((fixKarbo - listMakanan[i]['Nilai_Karbo']) >= 0) &&
                 ((fixProtein - listMakanan[i]['Nilai_Protein']) >= 0)
             ) {
-                
-                
-                
                 console.log(listMakanan[i]['Nama_Makanan'])
                 fixLemak -= listMakanan[i]['Nilai_Lemak']
-                console.log(Lemak)
+                console.log(fixLemak)
                 fixKarbo -= listMakanan[i]['Nilai_Karbo']
-                console.log(Karbo)
+                console.log(fixKarbo)
                 fixProtein -= listMakanan[i]['Nilai_Protein']
-                console.log(Protein)
+                console.log(fixProtein)
                 console.log('')
                 
                 makananTerpilih.push(listMakanan[i]) 
