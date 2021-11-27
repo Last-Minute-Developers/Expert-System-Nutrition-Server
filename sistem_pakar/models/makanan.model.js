@@ -24,10 +24,6 @@ const MakananSchema = mongoose.Schema({
   Nilai_Kalori: {
     type: Number,
     required: true
-  },
-  Status:{
-    type: Boolean,
-    required: true
   }
 })
 
