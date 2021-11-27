@@ -47,7 +47,12 @@ exports.diagnosa = async (req, res) => {
             BMR = 655 + (9.6 * parseFloat(berat_badan)) + (1.8 * parseFloat(tinggi_badan)) - (4.7 * parseFloat(usia))
         }
 
-        Energi = BMR * Aktivitas
+        if(IMT >= 30){
+            Energi = BMR * Aktivitas * Stress
+        }
+        else{
+            Energi = BMR * Aktivitas
+        }
         
         Karbo = (((60/100) * Energi) / 4) 
         Protein = (((15/100) * Energi) / 4) 
@@ -90,12 +95,17 @@ exports.diagnosa = async (req, res) => {
         console.log(fixProtein)
         console.log('')
 
+        const a = [];
+
         for(let i = 0; i < listMakanan.length; i++){
             if(
                 ((fixLemak - listMakanan[i]['Nilai_Lemak']) >= 0) &&
                 ((fixKarbo - listMakanan[i]['Nilai_Karbo']) >= 0) &&
                 ((fixProtein - listMakanan[i]['Nilai_Protein']) >= 0)
             ) {
+                
+                
+                
                 console.log(listMakanan[i]['Nama_Makanan'])
                 fixLemak -= listMakanan[i]['Nilai_Lemak']
                 console.log(Lemak)
@@ -105,7 +115,7 @@ exports.diagnosa = async (req, res) => {
                 console.log(Protein)
                 console.log('')
                 
-                makananTerpilih.push(listMakanan[i])
+                makananTerpilih.push(listMakanan[i]) 
             }
             else{
                 console.log(listMakanan[i])
