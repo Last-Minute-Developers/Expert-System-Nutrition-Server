@@ -27,7 +27,8 @@ exports.addMakanan = async (req, res) => {
         Nilai_Karbo,
         Nilai_Protein,
         Nilai_Takaran,
-        Nilai_Kalori
+        Nilai_Kalori,
+        Status,
     } = req.body
 
     try{
@@ -45,7 +46,8 @@ exports.addMakanan = async (req, res) => {
             Nilai_Karbo: parseInt(Nilai_Karbo),
             Nilai_Protein: parseInt(Nilai_Protein),
             Nilai_Takaran: parseInt(Nilai_Takaran),
-            Nilai_Kalori: parseInt(Nilai_Kalori)
+            Nilai_Kalori: parseInt(Nilai_Kalori),
+            Status
         })
 
         await addMakanan.save()
@@ -66,7 +68,8 @@ exports.patchMakanan = async (req, res) => {
         Nilai_Karbo,
         Nilai_Protein,
         Nilai_Takaran,
-        Nilai_Kalori
+        Nilai_Kalori,
+        Status
     } = req.body
 
     try{
@@ -87,7 +90,8 @@ exports.patchMakanan = async (req, res) => {
             Nilai_Karbo: parseFloat(Nilai_Karbo),
             Nilai_Protein: parseFloat(Nilai_Protein),
             Nilai_Takaran: parseFloat(Nilai_Takaran),
-            Nilai_Kalori: parseFloat(Nilai_Kalori)
+            Nilai_Kalori: parseFloat(Nilai_Kalori),
+            Status
         })
 
         const isExists = await dbObesitas.find().where({"Makanan._id": _id})

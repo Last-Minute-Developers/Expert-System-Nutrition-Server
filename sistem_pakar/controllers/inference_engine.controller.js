@@ -9,6 +9,7 @@ exports.diagnosa = async (req, res) => {
         berat_badan,
         faktor_aktivitas,
         faktor_stress,
+        Status,
     } = req.body
         
     let IMT, BMR, Energi, Karbo, Protein, Lemak, Aktivitas, Stress
