@@ -36,13 +36,13 @@ exports.signIn = async (req, res) => {
         const admin = await dbAdmin.find().where({Nama_Admin})
 
         if(admin.length <= 0){
-            return res.status(200).send({message: 'Password atau username anda salah', login: false})
+            return res.status(401).send({message: 'Password atau username anda salah', login: false})
         }
 
         let isValid = await bcrypt.compare(Password_Admin, admin[0].Password_Admin)
         
         if(!isValid){
-            return res.status(200).send({message: 'Password atau username anda salah', login: false})
+            return res.status(401).send({message: 'Password atau username anda salah', login: false})
         }
 
         const token = jwt.sign({Nama_Admin: admin[0].Nama_Admin}, process.env.AUTH_JWT_KEY, {
